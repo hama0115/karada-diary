@@ -7,6 +7,7 @@ version: 1.0
 
 /*
 モバイルファーストで記述
+localの追加CSSを変更→当ファイルへコピペ→「webproduction」内からgithubへ
 セレクタごとにメディアクエリを書くスタイルでやってみる
 */
 
@@ -27,13 +28,16 @@ ol {
 }
 
 a {
-  color: #000 !important;
+  color: #000;
   text-decoration: none;
 }
-
 /* 再度訪問時もリンク色なし */
 a:visited {
 	color: #000;
+}
+a:hover {
+	text-decoration: none;
+	color: #d4d4d4;
 }
 
 /* */
@@ -75,6 +79,14 @@ h3 {
   background: transparent;
   border-left: solid 5px #d4d4d4;
 }
+
+/* ウェジットのaの色を変更 */
+.widget a {
+	color: inherit;
+}
+.widget a:hover {
+	color: #d4d4d4;
+}
 /* */
 
 /*-- ヘッダー --*/
@@ -88,6 +100,7 @@ h3 {
 	height: 50px;
 	background-color: #f3f3f3;
 	z-index: 10;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
 }
 @media only screen and (min-width: 768px) {
 	.site-header {
@@ -186,7 +199,8 @@ h3 {
 }
 @media only screen and (min-width: 768px) {
 	.site-content {
-		padding-top: 90px;
+		/* PC版はヘッダーと被らないようにパディングにプラス */
+		padding-top: calc(90px + 1em);
 	}
 }
 
@@ -197,7 +211,7 @@ h3 {
 /* メイン要素(タイトル~コメント) */
 .site-main {
 	margin: 0 auto;
-	padding-top: 1rem;
+	padding: 1rem 0;
 	background-color: #fff;
 }
 @media only screen and (min-width: 768px) {
@@ -205,6 +219,11 @@ h3 {
 		width: 850px;
 		max-width: 90%;
 	}
+}
+
+/* 記事内のリンクの下線(親テーマ)を無効化 */
+article .entry-content a {
+	text-decoration: none;
 }
 
 /* タイトルエリア */
@@ -275,10 +294,15 @@ article .other-article {
 
 /* 前後ページへのリンク */
 
-/* 親テーマのmin-widthを初期値に */
 @media only screen and (min-width: 768px) {
+	/* 親テーマのmin-widthを初期値に */
 	.post-navigation .nav-links .nav-previous, .post-navigation .nav-links .nav-next {
 		min-width: auto;
+	}
+	
+	/* 親テーマのmax-widthを変更 */
+	.post-navigation {
+		max-width: 100%;
 	}
 }
 	
@@ -287,6 +311,16 @@ article .other-article {
 		width: 500px;
 		flex-direction: row;
 		justify-content: space-between;
+}
+
+/* 前後ページリンクに左右に余白を追加 */
+.post-navigation {
+	padding: 0 1rem;
+}
+
+/* 前後ページリンクホバー時の色も全体に合わせる */
+.post-navigation .nav-links a:hover {
+	color: #d4d4d4;
 }
 
 /*-- フッター --*/
