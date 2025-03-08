@@ -7,6 +7,7 @@ version: 1.0
 
 /*
 モバイルファーストで記述
+セレクタごとにメディアクエリを書くスタイルでやってみる
 */
 
 /* リセット部分 */
@@ -30,7 +31,7 @@ a {
   text-decoration: none;
 }
 
-//再度訪問時もリンク色なし
+/* 再度訪問時もリンク色なし */
 a:visited {
 	color: #000;
 }
@@ -79,13 +80,19 @@ h3 {
 /*-- ヘッダー --*/
 
 .site-header {
-	padding: 1rem;
+	padding: 0 1em;
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
+	height: 50px;
 	background-color: #f3f3f3;
 	z-index: 10;
+}
+@media only screen and (min-width: 768px) {
+	.site-header {
+		height: 90px;
+	}
 }
 
 .site-title {
@@ -94,14 +101,21 @@ h3 {
 }
 @media only screen and (min-width: 768px) {
 	.site-title {
-		font-size: 2rem;
+		font-size: 1.5rem;
 	}
 }
 
 .site-branding {
+	height: 50px;
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	position: static;
+}
+@media only screen and (min-width: 768px) {
+	.site-branding {
+		height: 90px;
+	}
 }
 
 .btn-menu {
@@ -166,19 +180,24 @@ h3 {
 	display: none;
 }
 
-/*-- アーカイブページ --*/
-
-/* 必要?
-.archive-title {
-	color: inherit;
+/*-- コンテンツ全体 --*/
+.site-content {
+	padding-top: 50px;
 }
-*/
+@media only screen and (min-width: 768px) {
+	.site-content {
+		padding-top: 90px;
+	}
+}
+
+/*-- アーカイブページ --*/
 
 /*-- 個別投稿ページ --*/
 
 /* メイン要素(タイトル~コメント) */
 .site-main {
 	margin: 0 auto;
+	padding-top: 1rem;
 	background-color: #fff;
 }
 @media only screen and (min-width: 768px) {
